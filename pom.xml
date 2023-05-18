@@ -11,7 +11,7 @@
     </parent>
     <groupId>cn.tellsea</groupId>
     <artifactId>Straw-Shiro</artifactId>
-    <description>StrawShiro后台权限管理系统</description>
+    <description>Shiro后台权限管理系统</description>
     <version>1.0.0</version>
 
     <properties>

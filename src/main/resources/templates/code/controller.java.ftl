@@ -6,13 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
-* ${table.comment!} 控制器
-*
-* @author ${author}
-* @date ${date}
-*/
+ * ${table.comment!} 控制器
+ *
+ * @author ${author}
+ * @date ${date}
+ */
 @Controller
-@RequestMapping("/${cfg.entityName}")
+@RequestMapping("/${cfg.moduleName}/${cfg.entityName}")
 public class ${table.controllerName} {
 
     @Autowired

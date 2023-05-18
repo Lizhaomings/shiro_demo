@@ -1,13 +1,12 @@
 server:
   port: 9000
-
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/straw_shiro?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: 123456
+    username: ENC(g2LCt+HpUWk4qclA69CB0A==)
+    password: ENC(Hc3vvzieRTw/kPiE/RspCg==)
     initialSize: 5
     minIdle: 5
     maxActive: 20

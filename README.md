@@ -1,4 +1,4 @@
-# shiro_demo
+# Straw-Shiro
 
 ## 1、项目简介
 
@@ -76,4 +76,3 @@ Straw-Shiro 使用的是 Apache 2.0 许可。详细信息请参见[Apache Licens
 
 # 微信公众号
 ![每天Get一个小技巧](https://img-blog.csdnimg.cn/20210317114147258.jpg#pic_center)
-

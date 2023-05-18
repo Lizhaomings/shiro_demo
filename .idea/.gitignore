@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../:\Desk\shiro_demo\.idea/dataSources/
+/../../../../../:\Desk\GitHub\Straw-Shiro-master\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/

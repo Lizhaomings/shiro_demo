@@ -86,14 +86,14 @@
 				</span>
             </div>
             <div id="search_body" style="float: left; padding-bottom: 10px;">
-                <#list table.fields as field>
-                    <div class="search_info">
-                        <span>${field.comment}</span>
-                        <select id="${field.propertyName}Q" class="selectpicker" data-live-search="true">
-                            <option value="0">请选择</option>
-                        </select>
-                    </div>
-                </#list>
+            <#list table.fields as field>
+                <div class="search_info">
+                    <span>${field.comment}</span>
+                    <select id="${field.propertyName}Q" class="selectpicker" data-live-search="true">
+                        <option value="0">请选择</option>
+                    </select>
+                </div>
+            </#list>
                 <div class="search_info" style="width: auto;">
                     <button class="btn_own btn_toolbar btn-purple no-border" href="#" id="btn_query" onclick="query()"
                             style="border-width: 0;">
@@ -118,10 +118,10 @@
                     <i class="glyphicon glyphicon-refresh light-blue" class="btn_icon"
                        style="color: rgb(147, 203, 249)"></i>刷新
                 </button>
-                <button class="btn_own btn_toolbar btn-purple no-border" href="#" id="btn_add" data-toggle="modal"
-                        data-target="#add_box" style="border-width: 0;">
-                    <i class="glyphicon glyphicon-plus blue" class="btn_icon"></i>新增
-                </button>
+                    <button class="btn_own btn_toolbar btn-purple no-border" href="#" id="btn_add" data-toggle="modal"
+                            data-target="#add_box" style="border-width: 0;">
+                        <i class="glyphicon glyphicon-plus blue" class="btn_icon"></i>新增
+                    </button>
             </div>
             <section id="box" class="content" style="clear: both;">
                 <div class="panel-body" style="padding-bottom:0px; padding: 0px;">
@@ -148,18 +148,18 @@
                 </button>
                 <font class="modal-title" id="myModalLabel">
                     <i class="glyphicon glyphicon-plus blue" class="btn_icon"></i><span
-                            class="modal-style">新增</span>
+                        class="modal-style">新增</span>
                 </font>
             </div>
             <div class="modal-body" style="float: left; ">
                 <form id="applyForm">
-                    <#list table.fields as field>
-                        <div class="search_info">
-                            <span>${field.comment}：</span>
-                            <input type="text" id="${field.propertyName}A" name="${field.propertyName}" class="form-control"
-                                   placeholder="请输入">
-                        </div>
-                    </#list>
+                <#list table.fields as field>
+                    <div class="search_info">
+                        <span>${field.comment}：</span>
+                        <input type="text" id="${field.propertyName}A" name="${field.propertyName}" class="form-control"
+                               placeholder="请输入">
+                    </div>
+                </#list>
                 </form>
             </div>
             <div class="modal-footer" style="clear: both;">
@@ -183,17 +183,17 @@
                 </button>
                 <font class="modal-title" id="myModalLabelM">
                     <i class="glyphicon glyphicon-edit i-style" style="color: rgb(255, 137, 42)"></i><span
-                            class="modal-style">修改</span>
+                        class="modal-style">修改</span>
                 </font>
             </div>
             <div class="modal-body" style="float: left; ">
-                <#list table.fields as field>
-                    <div class="search_info">
-                        <span>${field.comment}：</span>
-                        <input type="text" id="${field.propertyName}U" name="${field.propertyName}" class="form-control"
-                               placeholder="请输入">
-                    </div>
-                </#list>
+            <#list table.fields as field>
+                <div class="search_info">
+                    <span>${field.comment}：</span>
+                    <input type="text" id="${field.propertyName}U" name="${field.propertyName}" class="form-control"
+                           placeholder="请输入">
+                </div>
+            </#list>
                 <input type="hidden" id="id">
             </div>
             <div class="modal-footer" style="clear: both;">
@@ -216,7 +216,7 @@
                 </button>
                 <font class="modal-title" id="myModalLabelS">
                     <i class="glyphicon glyphicon-list-alt i-style" style="color: rgb(105, 170, 70);"></i><span
-                            class="modal-style">详情</span>
+                        class="modal-style">详情</span>
                 </font>
             </div>
             <div class="modal-body" style="float: left; ">
@@ -420,14 +420,14 @@
                             }
                         }
                     },
-                    <#list table.fields as field>
+                <#list table.fields as field>
                     {
                         align: "center",
                         field: '${field.propertyName}',
                         title: '${field.comment}',
                         sortable: 'false',
                     },
-                    </#list>
+                </#list>
                     {
                         field: 'operate',
                         title: '操作',
@@ -459,18 +459,18 @@
 
     function operateFormatter(value, row, index) {
 
-        return [
-            '<a class="like" href="javascript:void(0)" title="修改">',
-            '<i class="glyphicon glyphicon-edit" style="color: rgb(255, 137, 42)"></i>',
-            '</a>  ',
-            '<a class="information" href="javascript:void(0)" title="详情">',
-            '<i class="glyphicon glyphicon-list-alt" style="color: rgb(105, 170, 70)"></i>',
-            '</a>  ',
-            '<a class="remove" href="javascript:void(0)" title="删除">',
-            '<i class="glyphicon glyphicon-remove" style="color:rgb(221, 90, 67);"></i>',
-            '</a>',
-        ].join('');
-    }
+            return [
+                '<a class="like" href="javascript:void(0)" title="修改">',
+                '<i class="glyphicon glyphicon-edit" style="color: rgb(255, 137, 42)"></i>',
+                '</a>  ',
+                '<a class="information" href="javascript:void(0)" title="详情">',
+                '<i class="glyphicon glyphicon-list-alt" style="color: rgb(105, 170, 70)"></i>',
+                '</a>  ',
+                '<a class="remove" href="javascript:void(0)" title="删除">',
+                '<i class="glyphicon glyphicon-remove" style="color:rgb(221, 90, 67);"></i>',
+                '</a>',
+            ].join('');
+        }
 
     }
 
@@ -529,10 +529,10 @@
     $('#save_btn').click(function () {
         <#list table.fields as field>
         var ${field.propertyName} = $('#${field.propertyName}A').val();
-        if (${field.propertyName} == "") {
-            layer.msg('请输入${field.propertyName}', {time: 1500});//提示信息
-            return;
-        }
+            if (${field.propertyName} == "") {
+                layer.msg('请输入${field.propertyName}', {time: 1500});//提示信息
+                return;
+            }
         </#list>
 
         var index = layer.load(2, {shade: 0.1});//加载
@@ -566,7 +566,7 @@
     $('#mod_btn').click(function () {
         <#list table.fields as field>
         var ${field.propertyName} = $('#${field.propertyName}U').val();
-        if (${field.propertyName} == "") {
+            if (${field.propertyName} == "") {
             layer.msg('请输入${field.propertyName}', {time: 1500});//提示信息
             return;
         }
@@ -616,7 +616,7 @@
             var tag = this.tagName.toLowerCase(); // normalize case
             if (type == 'text' || type == 'password' || tag == 'textarea')
                 this.value = "";
-                // 多选checkboxes清空
+            // 多选checkboxes清空
             // select 下拉框清空
             else if (tag == 'select')
                 this.selectedIndex = -1;

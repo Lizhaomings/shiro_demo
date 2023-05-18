@@ -4,7 +4,7 @@
 
     <sql id="allField">
         <#list table.fields as field>
-            A.${field.name},
+        A.${field.name},
         </#list>
     </sql>
 

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="block/head"></div>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">代码生成</div>
+            <div class="layui-card-body">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th>接口类型</th>
+                        <th>是否生成</th>
+                        <th>组件类型</th>
+                        <th>请求类型</th>
+                        <th>参数类型</th>
+                    </tr>
+                    </thead>
+                    <tbody class="layui-form">
+                    <tr>
+                        <td>查询</td>
+                        <td>
+                            <input type="radio" name="list1" value="1" title="是" checked>
+                            <input type="radio" name="list1" value="2" title="否">
+                        </td>
+                        <td>
+                            <input type="radio" name="list2" value="1" title="模态框" checked>
+                            <input type="radio" name="list2" value="2" title="新页面">
+                        </td>
+                        <td>
+                            <input type="radio" name="list3" value="1" title="默认接口" checked>
+                            <input type="radio" name="list3" value="2" title="自定义">
+                        </td>
+                        <td>
+                            <input type="radio" name="list4" value="1" title="实体类" checked>
+                            <input type="radio" name="list4" value="2" title="Vo类">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>新增</td>
+                        <td>
+                            <input type="radio" name="save1" value="1" title="是" checked>
+                            <input type="radio" name="save1" value="2" title="否">
+                        </td>
+                        <td>
+                            <input type="radio" name="save2" value="1" title="模态框" checked>
+                            <input type="radio" name="save2" value="2" title="新页面">
+                        </td>
+                        <td>
+                            <input type="radio" name="save3" value="1" title="默认接口" checked>
+                            <input type="radio" name="save3" value="2" title="自定义">
+                        </td>
+                        <td>
+                            <input type="radio" name="save4" value="1" title="实体类" checked>
+                            <input type="radio" name="save4" value="2" title="Vo类">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>更新</td>
+                        <td>
+                            <input type="radio" name="update1" value="1" title="是" checked>
+                            <input type="radio" name="update1" value="2" title="否">
+                        </td>
+                        <td>
+                            <input type="radio" name="update2" value="1" title="模态框" checked>
+                            <input type="radio" name="update2" value="2" title="新页面">
+                        </td>
+                        <td>
+                            <input type="radio" name="update3" value="1" title="默认接口" checked>
+                            <input type="radio" name="update3" value="2" title="自定义">
+                        </td>
+                        <td>
+                            <input type="radio" name="update4" value="1" title="实体类" checked>
+                            <input type="radio" name="update4" value="2" title="Vo类">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>详情</td>
+                        <td>
+                            <input type="radio" name="detail1" value="1" title="是" checked>
+                            <input type="radio" name="detail1" value="2" title="否">
+                        </td>
+                        <td>
+                            <input type="radio" name="detail2" value="1" title="模态框" checked>
+                            <input type="radio" name="detail2" value="2" title="新页面">
+                        </td>
+                        <td>
+                            <input type="radio" name="detail3" value="1" title="默认接口" checked>
+                            <input type="radio" name="detail3" value="2" title="自定义">
+                        </td>
+                        <td>
+                            <input type="radio" name="detail4" value="1" title="实体类" checked>
+                            <input type="radio" name="detail4" value="2" title="Vo类">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>删除</td>
+                        <td>
+                            <input type="radio" name="delete1" value="1" title="是" checked>
+                            <input type="radio" name="delete1" value="2" title="否">
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="radio" name="delete3" value="1" title="默认接口" checked>
+                            <input type="radio" name="delete3" value="2" title="自定义">
+                        </td>
+                        <td>
+                            <input type="radio" name="delete4" value="1" title="实体类" checked>
+                            <input type="radio" name="delete4" value="2" title="Vo类">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="block/js"></div>
+<script th:src="@{/static/layuimini/lib/Sortable/Sortable.min.js}"></script>
+<script th:inline="javascript">
+    layui.use(['form', 'element'], function () {
+        let $ = layui.jquery
+            , form = layui.form;
+
+    });
+</script>
+</body>
+</html>

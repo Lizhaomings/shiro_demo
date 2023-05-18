@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>jQuery WeUI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="http://www.jqweui.cn//dist/demos/css/demos.css">
+</head>
+<body>
+<div class="weui-tab">
+    <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <!-- 搜索栏 -->
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form">
+                    <div class="weui-search-bar__box">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="searchText">
+                        <i class="weui-icon-search"></i>
+                        <span>搜索</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+            <div class="weui-grids">
+                <a href="" class="weui-grid js_grid">
+                    <div class="weui-grid__icon">
+                        <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        Button
+                    </p>
+                </a>
+                <a href="" class="weui-grid js_grid">
+                    <div class="weui-grid__icon">
+                        <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_cell.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        List
+                    </p>
+                </a>
+                <a href="" class="weui-grid js_grid">
+                    <div class="weui-grid__icon">
+                        <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        Button
+                    </p>
+                </a>
+                <a href="" class="weui-grid js_grid">
+                    <div class="weui-grid__icon">
+                        <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_cell.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        List
+                    </p>
+                </a>
+                <a href="" class="weui-grid js_grid">
+                    <div class="weui-grid__icon">
+                        <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_cell.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        List
+                    </p>
+                </a>
+                <a href="" class="weui-grid js_grid">
+                    <div class="weui-grid__icon">
+                        <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_cell.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        List
+                    </p>
+                </a>
+            </div>
+            <div class="weui-panel weui-panel_access">
+                <div class="weui-panel__hd">图文组合列表</div>
+                <div class="weui-panel__bd">
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">标题一</h4>
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">标题一</h4>
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="weui-panel__ft">
+                    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+                        <div class="weui-cell__bd">查看更多</div>
+                        <span class="weui-cell__ft"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+            <h1>页面二</h1>
+        </div>
+        <div id="tab3" class="weui-tab__bd-item">
+            <div class="weui-panel weui-panel_access">
+                <div class="weui-panel__hd">图文组合列表</div>
+                <div class="weui-panel__bd">
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">标题一</h4>
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">标题一</h4>
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="weui-panel__ft">
+                    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+                        <div class="weui-cell__bd">查看更多</div>
+                        <span class="weui-cell__ft"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="weui-panel weui-panel_access">
+                <div class="weui-panel__hd">图文组合列表</div>
+                <div class="weui-panel__bd">
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">标题一</h4>
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">标题二</h4>
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="weui-panel__ft">
+                    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+                        <div class="weui-cell__bd">查看更多</div>
+                        <span class="weui-cell__ft"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="tab4" class="weui-tab__bd-item">
+            <div class="weui-msg">
+                <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
+                <div class="weui-msg__text-area">
+                    <h2 class="weui-msg__title">Tellsea</h2>
+                    <p class="weui-msg__desc">内容详情</a></p>
+                </div>
+            </div>
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>账号</p>
+                    </div>
+                    <div class="weui-cell__ft">Tellsea</div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>昵称</p>
+                    </div>
+                    <div class="weui-cell__ft">汤海鸿</div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>身份证号码</p>
+                    </div>
+                    <div class="weui-cell__ft">544344333333333333</div>
+                </div>
+            </div>
+            <div class="weui-cells">
+                <a class="weui-cell weui-cell_access" href="javascript:;">
+                    <div class="weui-cell__bd">
+                        <p>系统设置</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" href="javascript:;">
+                    <div class="weui-cell__bd">
+                        <p>退出登录</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-tabbar">
+        <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+            <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+            <div class="weui-tabbar__icon">
+                <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_button.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">微信</p>
+        </a>
+        <a href="#tab2" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_msg.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">通讯录</p>
+        </a>
+        <a href="#tab3" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_article.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">发现</p>
+        </a>
+        <a href="#tab4" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="http://www.jqweui.cn//dist/demos/images/icon_nav_cell.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">我</p>
+        </a>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+
+<script type='text/javascript' src='https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.js' charset='utf-8'></script>
+<script th:inline="javascript">
+    $(function () {
+        var pb1 = $.photoBrowser({
+            items: [
+                "https://cdn.bootcss.com/jquery-weui/1.2.1/images/swiper-1.jpg",
+                "https://cdn.bootcss.com/jquery-weui/1.2.1/images/swiper-2.jpg",
+                "https://cdn.bootcss.com/jquery-weui/1.2.1/images/swiper-3.jpg"
+            ]
+        });
+    });
+</script>
+</body>
+</html>

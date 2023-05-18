@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="block/head"></div>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-md6 layui-col-md-offset3">
+        <div class="layuimini-container">
+            <div class="layuimini-main">
+
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">系统配置</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <div class="layui-form layuimini-form">
+                                <input type="hidden" name="id" value="1">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label required">系统Logo</label>
+                                    <div class="layui-input-block">
+                                        <input type="hidden" name="logo" id="logo" th:value="${entity.logo}">
+                                        <div class="layui-upload-drag" id="uploadPicDiv">
+                                            <i class="layui-icon"></i>
+                                            <p>点击上传</p>
+                                            <div class="layui-hide" id="uploadPicBtn">
+                                                <hr>
+                                                <img style="max-width: 150px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label required">系统名称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="name" lay-verify="required" placeholder="请输入系统名称"
+                                               autocomplete="off"
+                                               th:value="${entity.name}" class="layui-input">
+                                        <tip>用于需要系统全称时使用</tip>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label required">系统简称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="shortName" lay-verify="required" placeholder="请输入系统简称"
+                                               autocomplete="off"
+                                               th:value="${entity.shortName}" class="layui-input">
+                                        <tip>系统简称尽量简短</tip>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">关键字</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="keywords" lay-verify="required" placeholder="请输入关键字"
+                                               autocomplete="off"
+                                               th:value="${entity.keywords}" class="layui-input">
+                                        <tip>针对搜索引擎和更新频度的描述和关键词</tip>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">系统描述</label>
+                                    <div class="layui-input-block">
+                                        <textarea name="description" class="layui-textarea" th:text="${entity.description}"></textarea>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveInfoBtn">
+                                            更新配置
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="block/js"></div>
+<script th:inline="javascript">
+    layui.use(['form', 'upload'], function () {
+        let form = layui.form,
+            layer = layui.layer,
+            upload = layui.upload;
+
+        let uploadUrl = '/common/file/upload';
+
+        let logo = [[${entity.logo}]];
+        layui.$('#uploadPicBtn').removeClass('layui-hide').find('img').attr('src', logo);
+        // 上传图片
+        upload.render({
+            elem: '#uploadPicDiv'
+            , url: uploadUrl
+            , data: {folder: 'system_config'}
+            , done: function (res) {
+                if (res.code == 200) {
+                    layui.$('#uploadPicBtn').removeClass('layui-hide').find('img').attr('src', res.data);
+                    $('#logo').val(res.data);
+                    layer.msg(res.msg, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(res.msg, {time: 2000, icon: 2});
+                }
+            }
+            , error: function () {
+                layer.msg('请求失败', {time: 2000, icon: 2});
+            }
+        });
+
+        form.on('submit(saveInfoBtn)', function (data) {
+            console.log(1);
+            $.ajax({
+                type: 'post',
+                url: '/system/systemConfig/updateById',
+                data: data.field,
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {time: 2000, icon: 1}, function () {
+                            top.window.location.reload();
+                        });
+                    } else {
+                        layer.msg(res.msg, {time: 2000, icon: 2});
+                    }
+                },
+                error: function (res) {
+                    layer.msg('请求失败', {time: 2000, icon: 2});
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

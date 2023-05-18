@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="block/head"></div>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <blockquote class="layui-elem-quote">
+            <p>文件上传、下载接口未设置权限，属于公开接口</p>
+            <p>实际开发时，直接调用下方的示例接口即可</p>
+        </blockquote>
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>图片上传</legend>
+        </fieldset>
+        <div class="layui-upload-drag" id="uploadPicDiv">
+            <i class="layui-icon"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+            <div class="layui-hide" id="uploadPicBtn">
+                <hr>
+                <img style="max-width: 196px">
+            </div>
+        </div>
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>文件上传</legend>
+        </fieldset>
+        <button type="button" class="layui-btn" id="uploadFileBtn"><i class="layui-icon"></i>文件上传</button>
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>批量上传</legend>
+        </fieldset>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="uploadBatchBtn">多图片上传</button>
+            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                预览图：
+                <div class="layui-upload-list" id="uploadBatchList"></div>
+            </blockquote>
+        </div>
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>文件下载</legend>
+        </fieldset>
+        <blockquote class="layui-elem-quote">
+            <p>参数fileName：下载后的文件名，例如：我是大宝</p>
+            <p>参数filePath：文件相对访问路径，例如：/upload/default/2021/04/07/3cf13259-992b-4f71-8469-bd66e564376e.jpg</p>
+        </blockquote>
+        <a href="/common/file/download?fileName=我是大宝&filePath=/upload/default/2021/04/07/3cf13259-992b-4f71-8469-bd66e564376e.jpg" class="layui-btn">下载图片：我是大宝</a>
+    </div>
+</div>
+
+<div th:replace="block/js"></div>
+<script th:inline="javascript">
+    layui.use('upload', function () {
+        let $ = layui.jquery
+            , upload = layui.upload;
+
+        let uploadUrl = '/common/file/upload';
+        let uploadBatchUrl = '/common/file/uploadBatch';
+
+        // 上传图片
+        upload.render({
+            elem: '#uploadPicDiv'
+            , url: uploadUrl
+            , data: {folder: 'file_test'}
+            , done: function (res) {
+                if (res.code == 200) {
+                    layui.$('#uploadPicBtn').removeClass('layui-hide').find('img').attr('src', res.data);
+                    layer.msg(res.msg, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(res.msg, {time: 2000, icon: 2});
+                }
+            }
+            , error: function () {
+                layer.msg('请求失败', {time: 2000, icon: 2});
+            }
+        });
+
+        // 上传文件
+        upload.render({
+            elem: '#uploadFileBtn'
+            , url: uploadUrl
+            , accept: 'file'
+            , data: {folder: 'file_test'}
+            , done: function (res) {
+                if (res.code == 200) {
+                    layer.msg(res.msg, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(res.msg, {time: 2000, icon: 2});
+                }
+            }
+            , error: function () {
+                layer.msg('请求失败', {time: 2000, icon: 2});
+            }
+        });
+
+        // 多图片上传
+        upload.render({
+            elem: '#uploadBatchBtn'
+            , url: uploadUrl
+            , data: {folder: 'file_test'}
+            , multiple: true
+            , allDone: function (obj) {
+                if (obj.total == obj.successful) {
+                    layer.msg('上传成功', {time: 2000, icon: 1});
+                } else {
+                    layer.msg('上传失败：' + obj.aborted + '个', {time: 2000, icon: 2});
+                }
+            }
+            , done: function (res) {
+                if (res.code == 200) {
+                    $('#uploadBatchList').append('<img src="' + res.data + '" class="layui-upload-img" style="width: 200px; height: 200px;">')
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

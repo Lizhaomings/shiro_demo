@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head>
+        <div th:replace="block/head"></div>
+
+        <style>
+            #log-container {
+                height: calc(100vh - 130px);
+                overflow-y: scroll;
+                background: #333;
+                color: #aaa;
+                padding: 10px;
+            }
+        </style>
+    </head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">监控地址</label>
+                    <div class="layui-input-inline" style="width: 400px;">
+                        <input type="text" name="wsServerUrl" readonly th:value="${wsServerUrl}" lay-verify="required"
+                               lay-reqtext="WebSocket地址不能为空" autocomplete="off" placeholder="请输入WebSocket地址"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button type="button" class="layui-btn" id="openLog">开始监控</button>
+                    <button type="button" class="layui-btn layui-btn-danger" id="stopLog">停止监控</button>
+                    <button type="button" class="layui-btn layui-btn-warm" id="cleanLog">清空日志</button>
+                </div>
+            </div>
+        </form>
+        <div id="log-container">
+            <div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="block/js"></div>
+<script th:inline="javascript">
+    let websocket = null;
+    if ('WebSocket' in window) {
+        /// let wsServerUrl = '[[${wsServerUrl}]]';
+        let wsServerUrl = 'ws://120.27.147.79:9000/monitor/websocket/tailLog';
+        websocket = new WebSocket(wsServerUrl);
+    } else {
+        layer.msg('当前浏览器不支持WebSocket', {time: 2000, icon: 2});
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        $("#log-container div").append("连接发生错误 ...<br>");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function (event) {
+        $("#log-container div").append("连接成功建立 ...<br>");
+    };
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        let msg = event.data;
+        if (msg.indexOf(' INFO ')) {
+            msg = '<p style="color: #aaa;">' + msg + '</p>';
+        } else if (msg.indexOf(' WARN ')) {
+            msg = '<p style="color: #FFB800;">' + msg + '</p>';
+        } else if (msg.indexOf(' ERROR ')) {
+            msg = '<p style="color: #FF5722;">' + msg + '</p>';
+        }
+        // 接收服务端的实时日志并添加到HTML页面中
+        $("#log-container div").append(msg);
+        // 滚动条滚动到最低部
+        $("#log-container").scrollTop($("#log-container div").height() - $("#log-container").height());
+    };
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        $("#log-container div").append("连接关闭 ...<br>");
+    };
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        websocket.close();
+    };
+
+    //发送消息
+    /*function send() {
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }*/
+</script>
+<script th:inline="javascript">
+    layui.use(['form'], function () {
+        let $ = layui.jquery,
+            form = layui.form;
+
+        $('#openLog').on('click', function () {
+            window.location.reload();
+        });
+
+        $('#stopLog').on('click', function () {
+            websocket.close();
+        });
+
+        $('#cleanLog').on('click', function () {
+            $("#log-container div").empty();
+        });
+    });
+</script>
+</body>
+</html>

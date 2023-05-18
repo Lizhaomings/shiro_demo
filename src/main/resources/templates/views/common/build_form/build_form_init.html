@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="block/head"></div>
+
+    <style>
+        html, body {
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+        }
+
+        .straw-ghost {
+            padding: 10px;
+            background-color: #C8EBFB;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row layui-col-space20">
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">表单组件</div>
+            <div class="layui-card-body">
+                <div id="source" class="layui-form layuimini-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label required">单行输入框</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="required" autocomplete="off"
+                                   placeholder="请输入" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单行选择框</label>
+                        <div class="layui-input-block">
+                            <select name="interest" lay-filter="aihao" layui-unselect="">
+                                <option value=""></option>
+                                <option value="0">写作</option>
+                                <option value="1" selected="">阅读</option>
+                                <option value="2">游戏</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">搜索选择框</label>
+                        <div class="layui-input-block">
+                            <select name="modules" lay-verify="required" lay-search="">
+                                <option value="">直接选择或搜索选择</option>
+                                <option value="1">layer</option>
+                                <option value="2">form</option>
+                                <option value="3">layim</option>
+                                <option value="4">element</option>
+                                <option value="5">laytpl</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分组选择框</label>
+                        <div class="layui-input-block">
+                            <select name="quiz">
+                                <option value="">请选择问题</option>
+                                <optgroup label="城市记忆">
+                                    <option value="你工作的第一个城市">你工作的第一个城市</option>
+                                </optgroup>
+                                <optgroup label="学生时代">
+                                    <option value="你的工号">你的工号</option>
+                                    <option value="你最喜欢的老师">你最喜欢的老师</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">复选框</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="like[write]" title="写作">
+                            <input type="checkbox" name="like[read]" title="阅读" checked="">
+                            <input type="checkbox" name="like[game]" title="游戏">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">原始复选框</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
+                            <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
+                            <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">开关-默认关</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单选框</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="sex" value="男" title="男" checked="">
+                            <input type="radio" name="sex" value="女" title="女">
+                            <input type="radio" name="sex" value="禁" title="禁用" disabled="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">普通文本域</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="submit" class="layui-btn layui-btn-normal" lay-submit
+                                    lay-filter="dataFormSubmit">保存
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="dataFormReset">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">生成表单</div>
+            <div class="layui-card-body">
+                <blockquote class="layui-elem-quote">编辑Html保存时有bug，直接复制所有Html再编辑即可</blockquote>
+                <div id="target" class="layui-form layuimini-form" style="min-height: 400px;">
+
+                </div>
+                <!--<form class="layui-form layuimini-form" id="dataForm" lay-filter="dataFormFilter"></form>-->
+                </form>
+                <button type="button" class="layui-btn layui-btn-warm" id="copyHtml">复制HTML</button>
+                <button type="button" class="layui-btn layui-btn-primary" id="cleanForm">清空HTML</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">表单常用监听</div>
+            <div class="layui-card-body">
+<pre class="layui-code" lay-title="JavaScript" lay-skin="notepad">
+// 监听下拉选择
+form.on('select(filterName)', function (data) {
+
+});
+
+// 监听单选按钮
+form.on('radio(filterName)', function (data) {
+
+});
+
+// 监听开关
+form.on('switch(filterName)', function (data) {
+
+});
+</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editFormModal" class="straw-layer">
+    <form class="layui-form layuimini-form" id="editForm" lay-filter="editFormFilter">
+        <textarea placeholder="请输入内容Html" rows="20" name="html" class="layui-textarea"
+                  onfocus="this.select()"></textarea>
+        <div style="margin-top: 20px; text-align: center;">
+            <button type="submit" class="layui-btn layui-btn-normal" lay-submit
+                    lay-filter="editFormSubmit">保存
+            </button>
+            <button type="button" class="layui-btn layui-btn-primary" id="editFormReset">取消</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="block/js"></div>
+<script th:src="@{/static/layuimini/lib/Sortable/Sortable.min.js}"></script>
+<script th:inline="javascript">
+    layui.use(['form', 'element', 'code'], function () {
+        let $ = layui.jquery
+            , form = layui.form;
+
+        layui.code();
+
+        // 当前点击dom
+        let currClickDom;
+        // 当前点击dom的layui解析
+        let currClickDomStyle = {
+            select: [],
+            checkbox: [],
+            switch: [],
+            radio: []
+        };
+        // 编辑、删除按钮
+        let optionDom = '<tip class="editHtml" style="color: #1E9FFF;">编辑HTML</tip>' +
+            '<tip class="deleteHtml" style="margin-left: 10px; color: #FF5722;">删除节点</tip>\n';
+        let active = {
+            openEditFormModal() {
+                layer.open({
+                    title: '表单HTML'
+                    , type: 1
+                    , content: $('#editFormModal')
+                    , area: ['90%', '90%']
+                    , maxmin: true
+                    , cancel: function () {
+                        active.closeEditFormModal();
+                    }
+                });
+            },
+            closeEditFormModal() {
+                $('#editForm')[0].reset();
+                $('#editFormSubmit').css('display', 'block');
+                layer.closeAll();
+            },
+            handleLayuiParse(dom) {
+                // 去除layui解析：layui-unselect：layui-form-select1 layui-form-checkboxn layui-form-switch1 layui-form-radion
+                $(dom).find('.layui-form-select').each(function () {
+                    let tempStyle = $(this).prop("outerHTML");
+                    dom = dom.replace(tempStyle, '');
+                });
+                $(dom).find('.layui-form-checkbox').each(function () {
+                    let tempStyle = $(this).prop("outerHTML");
+                    dom = dom.replace(tempStyle, '');
+                });
+                $(dom).find('.layui-form-switch').each(function () {
+                    let tempStyle = $(this).prop("outerHTML");
+                    dom = dom.replace(tempStyle, '');
+                });
+                $(dom).find('.layui-form-radio').each(function () {
+                    let tempStyle = $(this).prop("outerHTML");
+                    dom = dom.replace(tempStyle, '');
+                });
+                return dom;
+            }
+        };
+
+        // 初始化拖拽
+        let source = document.getElementById("source");
+        Sortable.create(source, {
+            group: {name: 'source', pull: 'clone', put: false},
+            sort: false,
+            draggable: ".layui-form-item",
+            animation: 150,
+            ghostClass: 'straw-ghost',
+            // 结束拖拽
+            onEnd: function (/**Event*/evt) {
+                let itemEl = evt.item;
+                $(itemEl).find('.layui-input-block').append(optionDom);
+            },
+        });
+        let target = document.getElementById("target");
+        Sortable.create(target, {
+            group: {name: 'source', pull: false, put: true},
+            sort: true,
+            draggable: ".layui-form-item",
+            animation: 150,
+            ghostClass: 'straw-ghost',
+        });
+
+        // 编辑Html
+        $('#target').on('click', '.editHtml', function () {
+            currClickDom = $(this).parent().parent();
+            let dom = $(currClickDom).html().replace(new RegExp(optionDom, "g"), '');
+            dom = active.handleLayuiParse(dom);
+            form.val('editFormFilter', {html: dom});
+            active.openEditFormModal();
+        });
+
+        // 删除Html
+        $('#target').on('click', '.deleteHtml', function () {
+            $(this).parent().parent().remove();
+        });
+
+        // 关闭编辑框
+        $('#editFormReset').on('click', function () {
+            active.closeEditFormModal();
+        });
+
+        // 关闭框保存
+        form.on('submit(editFormSubmit)', function (data) {
+            currClickDom.empty().append(data.field.html).find('.layui-input-block').append(optionDom);
+            active.closeEditFormModal();
+            return false;
+        });
+
+        // 清空Html
+        $('#cleanForm').on('click', function () {
+            layer.confirm('确定清除完成HTML吗？', function (index) {
+                $('#target').empty();
+                layer.msg('清除完成', {time: 2000, icon: 1}, function () {
+                    layer.closeAll();
+                });
+            });
+        });
+
+        // 复制Html
+        $('#copyHtml').on('click', function () {
+            $('#target .layui-form-item').removeAttr('draggable').removeAttr('style');
+            let dom = $('#target').html().replace(new RegExp(optionDom, "g"), '');
+            dom = active.handleLayuiParse(dom);
+            dom = '<form class="layui-form layuimini-form" id="dataForm" lay-filter="dataFormFilter">' + dom + '\n</form>';
+            form.val('editFormFilter', {html: dom});
+            $('#editFormSubmit').css('display', 'none');
+            active.openEditFormModal();
+        });
+    });
+</script>
+</body>
+</html>
